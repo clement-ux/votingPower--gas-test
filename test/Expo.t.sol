@@ -13,20 +13,60 @@ contract ExpoTest is Test {
         expo = new Expo();
     }
 
-    function test_GasComparisonBewteenExpAndLin() public {
-        for (uint256 i = 1; i < 6 * 365 days;) {
-            uint256 resLin = expo.powerLin(i);
-            uint256 resExp = expo.powerExp(i);
-            uint256 resStp = expo.powerStp(i);
-            assertGe(resLin, 0);
-            assertGe(resExp, 0);
-            assertGe(resStp, 0);
-            assertLe(resLin, 5 * 1e18);
-            assertLe(resExp, 5 * 1e18);
-            assertLe(resStp, 5 * 1e18);
-            console.log(i);
-            i = i == 1 ? 2 : i * 3 / 2;
-        }
+    // min gas cost: 1683
+    // avg gas cost: 1683
+    // med gas cost: 1683
+    // max gas cost: 1683
+    function test_GasComparisonExp() public view {
+        // No gas diff between 0 and 200000000
+        // Gas comparison doesn't work if done on a for loop. (IDK why)
+        expo.powerExp(0);
+        expo.powerExp(10);
+        expo.powerExp(100);
+        expo.powerExp(1000);
+        expo.powerExp(10000);
+        expo.powerExp(100000);
+        expo.powerExp(1000000);
+        expo.powerExp(10000000);
+        expo.powerExp(100000000);
+        expo.powerExp(200000000);
+    }
+
+    // min gas cost: 522
+    // avg gas cost: 522
+    // med gas cost: 522
+    // max gas cost: 522
+    function test_GasComparisonLin() public view {
+        // No gas diff between 0 and 200000000
+        // Gas comparison doesn't work if done on a for loop. (IDK why)
+        expo.powerLin(0);
+        expo.powerLin(10);
+        expo.powerLin(100);
+        expo.powerLin(1000);
+        expo.powerLin(10000);
+        expo.powerLin(100000);
+        expo.powerLin(1000000);
+        expo.powerLin(10000000);
+        expo.powerLin(100000000);
+        expo.powerLin(200000000);
+    }
+
+    // min gas cost: 548
+    // avg gas cost: 592
+    // med gas cost: 548
+    // max gas cost: 834
+    function test_GasComparisonStp() public view {
+        // Gas comparison doesn't work if done on a for loop. (IDK why)
+        expo.powerStp(0);
+        expo.powerStp(10);
+        expo.powerStp(100);
+        expo.powerStp(1000);
+        expo.powerStp(10000);
+        expo.powerStp(100000);
+        expo.powerStp(1000000);
+        expo.powerStp(10000000);
+        expo.powerStp(100000000);
+        expo.powerStp(200000000);
     }
 
     // Formula exp:

@@ -24,9 +24,9 @@ contract Expo {
     }
 
     function powerStp(uint256 lockedTime) public pure returns (uint256) {
-        uint256 x = lockedTime.divWadDown(365 days * 6);
-        if (x < 2) return x / 4;
-        if (2 * x < 9) return (16 * x - 27 * 1e18) / 10;
+        uint256 x = lockedTime.divWadDown(365 days);
+        if (x < (2 * 1e18)) return x / 4;
+        if (2 * x < (9 * 1e18)) return (16 * x - 27 * 1e18) / 10;
         else return (9 * 1e18 + x) / 3;
     }
 }
