@@ -69,6 +69,23 @@ contract ExpoTest is Test {
         expo.powerStp(200000000);
     }
 
+    // min gas cost: 2200
+    // avg gas cost: 2200
+    // med gas cost: 2200
+    // max gas cost: 2200
+    function test_GasComparisonPow() public view {
+        // Gas comparison doesn't work if done on a for loop. (IDK why)
+        expo.powerPow(0);
+        expo.powerPow(10);
+        expo.powerPow(100);
+        expo.powerPow(1000);
+        expo.powerPow(10000);
+        expo.powerPow(100000);
+        expo.powerPow(1000000);
+        expo.powerPow(10000000);
+        expo.powerPow(100000000);
+        expo.powerPow(200000000);
+    }
     // Formula exp:
     // 5/(1 + exp(5-1.5x)) + 5/(1+exp(5)))
 
@@ -79,4 +96,7 @@ contract ExpoTest is Test {
     // 0.25x, if x < 2
     // (16x - 27)/10, if x < 4.5
     // (9 + x)/3, if x >= 4.5
+
+    // Formula pow:
+    // 1.5^(0.75x) - 1
 }

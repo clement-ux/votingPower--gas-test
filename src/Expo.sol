@@ -29,4 +29,10 @@ contract Expo {
         if (2 * x < (9 * 1e18)) return (16 * x - 27 * 1e18) / 10;
         else return (9 * 1e18 + x) / 3;
     }
+
+    function powerPow(uint256 lockedTime) public pure returns (uint256) {
+        return uint256(
+            wadPow(int256(uint256(3).divWadDown(2)), int256(3 * lockedTime.divWadDown(365 days * 4))) - 1e18
+        );
+    }
 }
